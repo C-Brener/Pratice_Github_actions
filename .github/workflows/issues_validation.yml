@@ -1,0 +1,19 @@
+name: Issues Validation
+on: issues
+
+jobs:
+    pr_opened:
+        name: PR unassigned
+        if: ${{ github.event.issue.pull_request }}
+        runs-on: ubuntu-latest
+        steps:
+            - run: |
+                echo A PR Unassigned ${{ github.event.issue.number}}
+              env:
+                NUMBER: ${{ github.event.issue.number }}
+    output-info:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Output Event Details
+              run: echo "${{ toJson(github.event)}}"
+
